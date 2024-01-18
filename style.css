@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    text-align: center;
+}
+.box {
+    background-color: black;
+    padding: 40px;
+    text-align: center;
+    margin: 15px;
+
+}
+
+h2 {
+    color: white;
+    margin-bottom: 10px;
+
+}
+
+button {
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 23px;
+    margin: 0 5px;
+    border-radius: 7px;
+}
+
+p {
+    color: white;
+    margin-top: 10px;
+    font-size: 23px;
+    visibility:hidden;
+    opacity: 0%;
+    transition: 1.4s ease;
+    transform: translateX(-200px);
+    -webkit-transform: translateX(-200px);
+    -moz-transform: translateX(-200px);
+    -ms-transform: translateX(-200px);
+    -o-transform: translateX(-200px);
+}
+
+
+
+
+ .show-response {
+    visibility: visible;
+    opacity: 70%;
+    transform: translateX(0);
+    background-color:black;
+    padding: 7px;
+   
+}
+
+.question-click {
+    background-color: rgb(255, 170, 0);
+    border: 5px solid pink;
+   
+}
