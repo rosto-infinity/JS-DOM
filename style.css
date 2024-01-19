@@ -6,6 +6,7 @@
 
 body{
     text-align: center;
+    overflow-x: hidden;
 }
 .box {
     background-color: black;
@@ -52,6 +53,7 @@ p {
     transform: translateX(0);
     background-color:black;
     padding: 7px;
+    z-index: 1;
    
 }
 
@@ -59,4 +61,17 @@ p {
     background-color: rgb(255, 170, 0);
     border: 5px solid pink;
    
+}
+
+.mousemove{
+    height: 50px;
+    width: 50px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    /*top:50%;
+    left:50%;
+    */position: absolute;
+    border: 1px solid red;
+    z-index: -1;
+
 }
