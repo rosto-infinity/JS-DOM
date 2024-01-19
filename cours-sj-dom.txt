@@ -1,0 +1,1071 @@
+
+
+
+
+
+
+
+SUPPORT DE COURS THÉORIQUE ET PRATIQUE
+
+Titre du cours : Introduction au DOM en JavaScript
+Description :Le Document Object Model (DOM) est une interface de programmation qui permet de manipuler la structure, le contenu et le style d'un document HTML ou XML. Ce cours vous guidera à travers les principaux concepts du DOM en utilisant JavaScript comme langage de programmation.
+
+
+
+
+
+
+
+
+
+
+
+1.	Introduction au DOM :
+•	Qu'est-ce que le DOM et pourquoi est-il important dans le développement web ?
+•	Comprendre la structure du DOM et sa relation avec le document HTML.
+2.	Accéder aux éléments du DOM :
+•	Utilisation des sélecteurs pour récupérer des éléments par leur balise, classe, identifiant, etc.
+•	Utilisation des méthodes de recherche pour obtenir des éléments spécifiques.
+3.	Manipulation du contenu du DOM :
+•	Modification du contenu texte des éléments.
+•	Ajout et suppression d'éléments du DOM.
+•	Modification des attributs des éléments.
+4.	Manipulation du style du DOM :
+•	Modification des propriétés CSS des éléments.
+•	Ajout, suppression et modification des classes des éléments.
+5.	Gestion des événements du DOM :
+•	Ajout d'écouteurs d'événements pour répondre aux interactions des utilisateurs.
+•	Utilisation des événements courants tels que clic, survol, soumission de formulaire, etc.
+6.	Traverser et parcourir le DOM :
+•	Navigation entre les éléments parents, enfants et frères.
+•	Utilisation des méthodes de parcours pour rechercher des éléments spécifiques.
+7.	Manipulation avancée du DOM :
+•	Utilisation des fragments de document pour améliorer les performances.
+•	Gestion des formulaires et validation des entrées utilisateur.
+8.	Bonnespratiques et performances :
+•	Optimisation de la manipulation du DOM pour des performances accrues.
+•	Utilisation de techniques telles que la délégation d'événements pour améliorer l'efficacité.
+
+
+
+
+
+
+1.	Introduction au DOM :
+a.	Qu'est-ce que le DOM et pourquoi est-il important dans le développement web ?
+Le Document Object Model (DOM) est une interface de programmation normalisée qui permet aux développeurs d'accéder, de manipuler et de mettre à jour la structure, le contenu et le style d'un document HTML ou XML. Il représente le document web sous forme d'une hiérarchie d'objets, où chaque élément, chaque attribut et chaque morceau de texte sont représentés par des objets manipulables.
+Le DOM joue un rôle essentiel dans le développement web, car il permet de créer des expériences utilisateur interactives et dynamiques. En manipulant le DOM à l'aide de JavaScript, les développeurs peuvent modifier le contenu d'une page web en temps réel, réagir aux actions de l'utilisateur, créer des animations et des effets visuels, et même mettre à jour la mise en page et le style de la page.
+Grâce au DOM, il est possible d'accéder à n'importe quel élément d'une page web, de le modifier, de l'ajouter ou de le supprimer. Par exemple, vous pouvez changer le texte d'un paragraphe, masquer ou afficher un élément, ajouter de nouveaux éléments à la page ou déplacer des éléments existants.
+Le DOM est également utilisé pour gérer les événements générés par les utilisateurs, tels que les clics de souris, les soumissions de formulaires ou les survols d'éléments. En ajoutant des écouteurs d'événements au DOM, vous pouvez exécuter des actions spécifiques en réponse à ces événements, offrant ainsi une interactivité accrue à vos applications web.
+En résumé, le DOM est un élément clé du développement web moderne. Il permet aux développeurs de manipuler et de contrôler les pages web de manière dynamique, offrant ainsi des possibilités infinies pour créer des interfaces utilisateur interactives, réactives et personnalisées.
+b.	Comprendre la structure du DOM et sa relation avec le document HTML.
+Un document HTML n'est au final qu'un arbre d'éléments HTML et de noeuds textes qu'il est possible de parcourir de différentes manières. Cet arbre est appellé le DOM. 
+
+Le DOM représente le document web sous la forme d'une arborescence d'objets, où chaque élément est un nœud de l'arbre. L'élément HTML ou XML racine est appelé le nœud de document, et tous les autres éléments sont des nœuds enfants, petits-enfants, etc., de ce nœud de document.
+Les éléments du DOM peuvent avoir des relations parent-enfant, où un élément est le parent d'un autre élément, et frère-frère, où deux éléments ont le même parent. Par exemple, un élément <div> peut être le parent d'un élément <p>, tandis que deux éléments <li> à l'intérieur d'une liste non ordonnée sont des frères.
+En plus des balises, le DOM représente également les attributs et le contenu texte des éléments. Les attributs d'un élément, tels que les classes, les identifiants ou les valeurs d'attribut personnalisées, sont accessibles et modifiables via le DOM. De même, le contenu texte d'un élément peut être récupéré et mis à jour à l'aide des propriétés du DOM.
+
+2.	Accéder aux éléments du DOM :
+a.	Utilisation des sélecteurs pour récupérer des éléments par leur balise, classe, identifiant, etc.
+Sélection des éléments HTML : Des sélecteurs pour cibler certains éléments de la page tels que des boutons, des conteneurs, des champs de saisie, etc. Ces sélecteurs sont utilisés pour ajouter des écouteurs d'événements et modifier le contenu ou le style des éléments.
+HTML
+ <div class="click-event box">
+        <h2>Quelle est la capitale de la Suise ?</h2>
+        <button id="btn-1">Berne</button>
+        <button id="btn-2">Zurich</button>
+        <p>La bonne reponse est : Berne</p>
+</div>
+JS
+constquestionContainer = document.querySelector(".click-event");
+const btn1 = document.querySelector("#btn-1");
+const btn2 = document.querySelector("#btn-2");
+
+La méthode document.querySelector() prend en paramètre un sélecteur CSS et renvoie le premier élément correspondant trouvé dans le document. Dans notre cas, les sélecteurs utilisés sont des sélecteurs de classe (".click-event") et des sélecteurs d'identifiant ("#btn-1" et "#btn-2").
+Une fois que ces éléments sont sélectionnés, vous pouvez leur attacher des écouteurs d'événements ou effectuer d'autres manipulations en utilisant les références questionContainer, btn1, et btn2. 
+
+Le code ci-dessus utilise la méthode document.querySelector() pour sélectionner des éléments HTML spécifiques en utilisant des sélecteurs CSS.
+1.	questionContainer : La ligne de code constquestionContainer = document.querySelector(".click-event"); sélectionne un élément qui a la classe CSS "click-event". Cet élément est probablement un conteneur qui réagit à un événement de clic.
+2.	btn1 et btn2 : Les lignes de code const btn1 = document.querySelector("#btn-1"); et const btn2 = document.querySelector("#btn-2"); sélectionnent les éléments qui ont les identifiants HTML "btn-1" et "btn-2" respectivement. Cesélémentssontgénéralement des boutons.
+
+ Par exemple, vous pouvez ajouter un écouteur d'événements au clic sur btn1 en utilisant la méthode addEventListener() comme suit :
+btn1.addEventListener("click", () => {
+  // Code à exécuter lorsque btn1 est cliqué
+Console.log(‘ click sur le bouton’) ;
+});
+
+
+b.	Utilisation des méthodes de recherche pour obtenir des éléments spécifiques.
+
+1.	Exemple avec 
+questionContainer.addEventListener("click", () => { 
+questionContainer.classList.toggle('question-click') 
+});
+Dans cet exemple, nous utilisons la méthode addEventListener() pour attacher un écouteur d'événements de clic à l'élément questionContainer. Lorsque cet élément est cliqué, la fonction de rappel (callback) anonyme est déclenchée.
+À l'intérieur de cette fonction de rappel, nous utilisons la méthode classList.toggle() pour alterner la présence de la classe CSS 'question-click' sur l'élément questionContainer. Si la classe est déjà présente, elle sera supprimée ; sinon, elle sera ajoutée. Cette classe est définie dans votre CSS et a un fond de couleur orange (background-color:rgb(255, 170, 0)).
+L'effet de cette logique est de changer le fond de questionContainer en orange lorsque vous cliquez dessus, puis de le restaurer à son état initial lorsque vous cliquez à nouveau.
+
+
+2.	Exemple avec 
+btn1.addEventListener("click", () => {
+btn1.style.background = 'green'; 
+response.style.background = 'green'; 
+response.classList.add('show-response');
+ });
+ 
+
+ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+li {
+    list-style: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+
+}
+
+.box {
+    background-color: black;
+    padding: 40px;
+    text-align: center;
+    margin: 15px;
+
+}
+
+h2 {
+    color: white;
+    margin-bottom: 10px;
+
+}
+
+button {
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 23px;
+    margin: 0 5px;
+    border-radius: 7px;
+}
+
+p {
+    color: white;
+    margin-top: 10px;
+    font-size: 23px;
+    visibility: hidden;
+    opacity: 0;
+transition: 1.4s ease;
+    transform: translateX(-200px);
+}
+
+.show-response {
+    visibility: visible;
+    opacity: 70%;
+    transform: translateX(0);
+   
+}
+
+.question-click {
+    background-color: rgb(255, 170, 0);
+    border: 5px solid pink;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+Dans cet exemple, nous utilisons la méthode addEventListener() pour attacher un écouteur d'événements de clic à l'élément btn1. Lorsque ce bouton est cliqué, la fonction de rappel anonyme est exécutée.
+À l'intérieur de cette fonction de rappel, nous modifions le style de btn1 en changeant son fond en vert avec btn1.style.background = 'green'. De même, nous modifions le fond de l'élément response en vert avec response.style.background = 'green'.
+Ensuite, nous ajoutons la classe CSS 'show-response' à l'élément response en utilisant la méthode classList.add(). Cette classe est définie dans votre CSS et définit la visibilité et l'opacité de l'élément, lui permettant d'apparaître et de se déplacer lors de la transition (transition: 1.4s ease).
+En combinant ces changements de style et de classe, vous obtenez un effet visuel où le bouton btn1 et l'élément response deviennent verts lorsque btn1 est cliqué.
+3.	Exemple avec 
+btn2.addEventListener("click", () => {
+btn2.style.background = 'red'; 
+response.style.background = 'red'; 
+response.classList.add('show-response'); 
+});
+Cet exemple est similaire au précédent, mais cette fois, nous utilisons l'élément btn2. Lorsque btn2 est cliqué, la fonction de rappel anonyme est exécutée.
+À l'intérieur de cette fonction de rappel, nous modifions le style de btn2 en changeant son fond en rouge avec btn2.style.background = 'red'. Nous faisons également la même modification pour l'élément response en utilisant response.style.background = 'red'.
+Ensuite, nous ajoutons la classe CSS 'show-response' à l'élément response avec response.classList.add('show-response').
+Cela donne un effet visuel où le bouton btn2 et l'élément response deviennent rouges lorsque btn2 est cliqué.
+En résumé, ces exemples illustrent comment utiliser les méthodes de recherche pour obtenir des éléments spécifiques (querySelector() et querySelectorAll()), ainsi que l'utilisation de méthodes et propriétés pour modifier les styles CSS des éléments (style, classList, etc.). 
+
+
+Exemple avec querySelector() et classList :
+
+
+consttoggleButton = document.querySelector('.toggle-button');
+const menu = document.querySelector('.menu');
+
+toggleButton.addEventListener('click', () => {
+menu.classList.toggle('show-menu');
+});
+
+Dans cet exemple, nous utilisons querySelector() pour obtenir les références vers l'élément avec la classe 'toggle-button' et l'élément avec la classe 'menu'. Lorsque le bouton de bascule est cliqué, la fonction de rappel est déclenchée et la classe 'show-menu' est ajoutée ou supprimée de l'élément du menu, en fonction de sa présence. Cela permet de faire apparaître ou de masquer le menu en fonction des clics sur le bouton de bascule.
+
+ Mouvement de la souris
+
+
+ <div class="mousemove"></div>
+
+    <div class="keypress box">
+        <h2>Vous appuyer ser la touche :</h2>
+        <span id="key"></span>
+    </div>
+
+
+//------mousemove-----
+window.addEventListener('mousemove',
+(e) => {
+mousemove.style.left = e.pageX + "px";
+mousemove.style.top = e.pageY + "px";
+});
+
+Dans cette partie du cours, nous allons étudier le mouvement de la souris et comment utiliser l'événement mousemove pour suivre la position de la souris et effectuer des actions en conséquence.
+Le code utilise la méthode addEventListener() pour attacher un écouteur d'événements mousemove à l'objet window. Cela signifie que chaque fois que la souris se déplace à l'intérieur de la fenêtre, la fonction de rappel (callback) anonyme sera déclenchée.
+
+Dans la fonction de rappel, nous utilisons l'objet event (généralement désigné par e) qui est passé en tant que paramètre pour accéder aux informations relatives à l'événement mousemove. Les propriétés pageX et pageY de l'objet event représentent les coordonnées horizontales et verticales de la souris par rapport à la page.
+Ensuite, nous utilisons ces coordonnées pour modifier les styles de l'élément mousemove. Dans votre exemple, l'élément mousemove n'est pas défini, donc je vais supposer que c'est un élément HTML que vous avez défini ailleurs dans votre code.
+En utilisant les propriétés style.left et style.top, nous modifions la position de l'élément mousemove pour suivre les coordonnées x et y de la souris respectivement. Le + "px" est ajouté pour spécifier que les valeurs doivent être interprétées en pixels.
+En résumé, ce code permet de faire en sorte que l'élément mousemove suive la position de la souris lorsque celle-ci se déplace à l'intérieur de la fenêtre. Les coordonnées de la souris sont capturées à l'aide de l'événement mousemove, puis les styles de l'élément mousemove sont modifiés en conséquence pour refléter la position actuelle de la souris
+
+
+
+.mousemove {
+    height: 50px;
+    width: 50px;
+    z-index: -1;
+    /*top:50%;
+    left:50%;
+    */
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border: 1px solid rgb(255, 3, 3);
+    border-radius: 50px;
+}
+
+#key {
+    color: yellow;
+    font-size: 35px;
+}
+
+
+//------mousedown --------
+window.addEventListener('mousedown',
+  () => {
+    mousemove.style.transform = "scale(2) translate(-25%, -25%)";
+  });
+
+Dans la continuité du cours, nous allons maintenant aborder l'événement mousedown et son utilisation dans le code ci-dessus..
+Le code utilise la méthode addEventListener() pour attacher un écouteur d'événements mousedown à l'objet window. Cela signifie que lorsque le bouton de la souris est enfoncé (mousedown) à l'intérieur de la fenêtre, la fonction de rappel anonyme sera déclenchée.
+Dans la fonction de rappel, nous modifions le style de l'élément mousemove. Dans votre exemple, le code fait usage d'une transformation CSS pour modifier la mise en page de l'élément. Plus précisément, la propriété transform est utilisée pour appliquer une échelle (scale(2)) et un décalage (translate(-25%, -25%)) à l'élément.
+L'échelle scale(2) agrandit l'élément deux fois sa taille originale, tandis que le décalage translate(-25%, -25%) le déplace de 25% vers le haut et vers la gauche par rapport à sa position d'origine.
+L'effet de cette transformation est d'agrandir et de déplacer l'élément mousemove lorsque le bouton de la souris est enfoncé à l'intérieur de la fenêtre.
+Il est important de noter que dans votre exemple, l'élément mousemove n'est pas défini. Assurez-vous d'avoir défini cet élément dans votre code HTML ou JavaScript avant d'utiliser cette partie du code.
+En résumé, l'événement mousedown est utilisé pour détecter le moment où le bouton de la souris est enfoncé à l'intérieur de la fenêtre. Lorsque cela se produit, l'élément mousemove est modifié en appliquant une transformation CSS pour l'agrandir et le déplacer.
+
+//---------mouseup --------
+window.addEventListener('mouseup',
+  () => {
+    mousemove.style.transform = "scale(1) translate(-50%, -50%)";
+  });
+
+
+Poursuivons le cours en abordant maintenant l'événement mouseup et son utilisation dans le code ci-dessus.
+Le code utilise la méthode addEventListener() pour attacher un écouteur d'événements mouseup à l'objet window. Cela signifie que lorsque le bouton de la souris est relâché (mouseup) à l'intérieur de la fenêtre, la fonction de rappel anonyme sera déclenchée.
+Dans la fonction de rappel, nous modifions à nouveau le style de l'élément mousemove. Cette fois-ci, nous utilisons la propriété transform pour réinitialiser la transformation appliquée précédemment.
+La valeur "scale(1) translate(-50%, -50%)" spécifie que l'élément mousemove doit être mis à l'échelle à sa taille d'origine (scale(1)) et déplacé de 50% vers le haut et vers la gauche par rapport à sa position d'origine (translate(-50%, -50%)).
+L'effet de cette réinitialisation de transformation est de ramener l'élément mousemove à sa taille et position d'origine lorsque le bouton de la souris est relâché à l'intérieur de la fenêtre.
+Comme dans les exemples précédents, assurez-vous d'avoir préalablement défini l'élément mousemove dans votre code HTML ou JavaScript avant d'utiliser cette partie du code.
+En résumé, l'événement mouseup est utilisé pour détecter le moment où le bouton de la souris est relâché à l'intérieur de la fenêtre. Lorsque cela se produit, l'élément mousemove est réinitialisé en supprimant la transformation appliquée précédemment, le ramenant ainsi à sa taille et position d'origine.
+
+
+//-------mouseenter -------
+questionContainer.addEventListener(
+  "mouseenter", () => {
+    questionContainer.style.background = "pink";
+  });
+
+Poursuivons le cours en abordant maintenant l'événement mouseenter et son utilisation dans le code ci-dessus.
+
+Le code utilise la méthode addEventListener() pour attacher un écouteur d'événements mouseenter à l'élément questionContainer. Cela signifie que lorsque le curseur de la souris entre dans la zone de l'élément questionContainer, la fonction de rappel anonyme sera déclenchée.
+Dans la fonction de rappel, nous modifions le style de l'élément questionContainer. Dans votre exemple, le code change la couleur de fond de l'élément en rose en utilisant la propriété background et la valeur "pink".
+L'effet de cela est que lorsque le curseur de la souris entre dans l'élément questionContainer, sa couleur de fond est modifiée en rose.
+L'événement mouseenter diffère de l'événement mouseover en ce sens qu'il n'est déclenché que lorsque le curseur entre réellement dans l'élément spécifié, et non lorsqu'il se déplace à l'intérieur de l'élément.
+Assurez-vous d'avoir préalablement défini l'élément questionContainer dans votre code HTML ou JavaScript avant d'utiliser cette partie du code.
+En résumé, l'événement mouseenter est utilisé pour détecter le moment où le curseur de la souris entre dans la zone d'un élément spécifié. Lorsque cela se produit, les styles de l'élément peuvent être modifiés en conséquence. Dans votre exemple, la couleur de fond de l'élément questionContainer est changée en rose lorsque le curseur de la souris entre dans cet élément.
+
+//------------mouseout ------
+questionContainer.addEventListener(
+  "mouseout", () => {
+    questionContainer.style.background = "rgba(0,0,0,0.3)";
+  });
+
+Poursuivons le cours en abordant maintenant l'événement mouseout et son utilisation dans le code ci-dessus.
+
+Le code utilise la méthode addEventListener() pour attacher un écouteur d'événements mouseout à l'élément questionContainer. Cela signifie que lorsque le curseur de la souris quitte la zone de l'élément questionContainer, la fonction de rappel anonyme sera déclenchée.
+Dans la fonction de rappel, nous modifions à nouveau le style de l'élément questionContainer. Cette fois-ci, nous changeons la couleur de fond de l'élément en utilisant la propriété background et la valeur "rgba(0,0,0,0.3)".
+La valeur "rgba(0,0,0,0.3)" représente une couleur noir semi-transparente. Cela signifie que la couleur de fond de l'élément questionContainer sera un noir légèrement transparent lorsque le curseur de la souris quitte cet élément.
+L'événement mouseout est déclenché lorsque le curseur de la souris quitte la zone de l'élément spécifié. Il diffère de l'événement mouseleave en ce sens qu'il est également déclenché lorsque le curseur se déplace à l'intérieur de l'élément lui-même.
+Assurez-vous d'avoir préalablement défini l'élément questionContainer dans votre code HTML ou JavaScript avant d'utiliser cette partie du code.
+En résumé, l'événement mouseout est utilisé pour détecter le moment où le curseur de la souris quitte la zone d'un élément spécifié. Lorsque cela se produit, les styles de l'élément peuvent être modifiés en conséquence. Dans votre exemple, la couleur de fond de l'élément questionContainer est changée en noir semi-transparent lorsque le curseur de la souris quitte cet élément.
+
+//-------------mouseover -------
+response.addEventListener('mouseover',
+  () => {
+    response.style.transform = "rotate(1deg)";
+  });
+
+Poursuivons le cours en abordant maintenant l'événement mouseout et son utilisation dans le code ci-dessus 
+Le code utilise la méthode addEventListener() pour attacher un écouteur d'événements mouseout à l'élément questionContainer. Cela signifie que lorsque le curseur de la souris quitte la zone de l'élément questionContainer, la fonction de rappel anonyme sera déclenchée.
+Dans la fonction de rappel, nous modifions à nouveau le style de l'élément questionContainer. Cette fois-ci, nous changeons la couleur de fond de l'élément en utilisant la propriété background et la valeur "rgba(0,0,0,0.3)".
+La valeur "rgba(0,0,0,0.3)" représente une couleur noir semi-transparente. Cela signifie que la couleur de fond de l'élément questionContainer sera un noir légèrement transparent lorsque le curseur de la souris quitte cet élément.
+L'événement mouseout est déclenché lorsque le curseur de la souris quitte la zone de l'élément spécifié. Il diffère de l'événement mouseleave en ce sens qu'il est également déclenché lorsque le curseur se déplace à l'intérieur de l'élément lui-même.
+Assurez-vous d'avoir préalablement défini l'élément questionContainer dans votre code HTML ou JavaScript avant d'utiliser cette partie du code.
+En résumé, l'événement mouseout est utilisé pour détecter le moment où le curseur de la souris quitte la zone d'un élément spécifié. Lorsque cela se produit, les styles de l'élément peuvent être modifiés en conséquence. Dans votre exemple, la couleur de fond de l'élément questionContainer est changée en noir semi-transparent lorsque le curseur de la souris quitte cet élément.
+
+
+
+
+
+
+//--------------------------
+// KeyPress event
+document.addEventListener("keypress",
+  (e) => {
+    // console.log(e);
+    // console.log(e.key);
+    key.textContent = e.key;
+
+    if (e.key === "j") {
+      keypressContainer.style.background = "pink";
+    } else if (e.key === "h") {
+      keypressContainer.style.background = "teal";
+    } else {
+      keypressContainer.style.background = "red";
+    }
+  });
+Lorsque l'événement keypress est déclenché, la fonction de rappel est appelée avec un événement e en tant que paramètre. Cet événement contient des informations sur la touche du clavier qui a été pressée.
+Pour afficher la touche pressée à l'utilisateur, nous utilisons la ligne de code suivante :
+javascript
+key.textContent = e.key;
+
+Ici, nous accédons à la propriété key de l'objet e, qui contient la valeur de la touche du clavier pressée. Ensuite, nous mettons à jour le contenu de l'élément key en utilisant key.textContent pour afficher cette valeur à l'utilisateur.
+Ensuite, nous utilisons une structure if-else pour déterminer quelle action prendre en fonction de la touche pressée. Dans votre exemple, nous vérifions si la valeur de e.key est égale à "j" ou "h". Si la touche pressée est "j", cela signifie que la valeur de e.key est "j", et nous changeons la couleur de fond de l'élément keypressContainer en rose (pink) :
+javascript
+if (e.key === "j") {
+keypressContainer.style.background = "pink";
+}
+
+Si la touche pressée est "h", c'est-à-dire si la valeur de e.key est "h", nous changeons la couleur de fond de l'élément keypressContainer en teal :
+
+
+
+javascript
+
+else if (e.key === "h") {
+keypressContainer.style.background = "teal";
+}
+
+Dans tous les autres cas, lorsque la touche pressée n'est ni "j" ni "h", nous changeons la couleur de fond de l'élément keypressContainer en rouge (red) :
+
+javascript
+else {
+keypressContainer.style.background = "red";
+}
+
+Cela permet de fournir une rétroaction visuelle à l'utilisateur en changeant la couleur de fond de l'élément keypressContainer en fonction de la touche pressée.
+Assurez-vous d'avoir défini les éléments key et keypressContainer dans votre code HTML ou JavaScript avant d'utiliser cette partie du code.
+En résumé, l'événement keypress est utilisé pour détecter lorsque l'utilisateur appuie sur une touche du clavier qui produit un caractère. Dans votre exemple, le texte de l'élément key est mis à jour avec la valeur de la touche pressée, et la couleur de fond de l'élément keypressContainer est modifiée en fonction de cette touche. Si la touche est "j", la couleur de fond devient rose, si la touche est "h", la couleur de fond devient teal, sinon la couleur de fond devient rouge.
+
+
+
+// Fonction de manipulation des événements de pression des touches
+document.addEventListener("keydown", (event) => {
+  const key = event.key.toLowerCase();
+
+  // Vérification des touches pressées
+  if (key === "j" || key === "p" || key === "h") {
+    // Jouer le son correspondant
+    playSound(key);
+  }
+
+  // Changement de couleur en fonction de la touche pressée
+  if (key === "j") {
+    keypressContainer.style.background = "pink";
+  } else if (key === "h") {
+    keypressContainer.style.background = "teal";
+  } else {
+    keypressContainer.style.background = "red";
+  }
+});
+
+// Fonction de lecture du son
+function playSound(key) {
+  let soundPath = "";
+
+  // Déterminer le chemin du fichier audio en fonction de la touche pressée
+  switch (key) {
+    case "j":
+      soundPath = "son/son_j.mp3";
+      break;
+    case "p":
+      soundPath = "son/son_p.mp3";
+      break;
+    case "h":
+      soundPath = "son/son_h.mp3";
+      break;
+    default:
+      return; // Ne rien faire si la touche n'est pas prise en charge
+  }
+
+  // Créer un nouvel élément audio et jouer le son
+  const audio = new Audio(soundPath);
+  audio.play();
+}
+
+
+
+
+
+Le code fourni est un exemple de code JavaScript qui détecte les touches "j", "p" et "h" lorsqu'elles sont pressées et effectuent des actions en conséquence. Voici une explication détaillée du code, ligne par ligne :
+javascript
+// Fonction de manipulation des événements de pression des touches
+document.addEventListener("keydown", (event) => {
+La première ligne de code ajoute un écouteur d'événement à l'objet pour détecter les pressions de touches. Lorsqu'une touche est pressée, la fonction fléchée est appelée avec l'objet événement en tant que paramètre.document
+javascript
+const key = event.key.toLowerCase();
+La deuxième ligne de code extrait la touche pressée de l'objet événement et la convertit en minuscules à l'aide de la méthode . Cela permet de comparer la touche pressée avec les touches "j", "p" et "h" agissant sur la casse.toLowerCase()
+javascript
+// Vérification des touches pressées
+if (key === "j" || key === "p" || key === "h") {
+  // Jouer le son correspondant
+  playSound(key);
+}
+Les lignes 4 à 6 vérifient si la touche pressée est "j", "p" ou "h". Si c'est le cas, la fonction est appelée avec la touche pressée en tant que paramètre.playSound()
+javascript
+// Changement de couleur en fonction de la touche pressée
+if (key === "j") {
+  keypressContainer.style.background = "pink";
+} else if (key === "h") {
+  keypressContainer.style.background = "teal";
+} else {
+  keypressContainer.style.background = "red";
+}
+Les lignes 8 à 14 changent la couleur de l'élément en fonction de la touche pressée. Si la touche est "j", la couleur est définie sur "pink". Si la touche est "h", la couleur est définie sur "teal". Sinon, la couleur est définie sur "red".keypressContainer
+javascript
+// Fonction de lecture du son
+function playSound(key) {
+  let soundPath = "";
+
+  // Déterminer le chemin du fichier audio en fonction de la touche pressée
+  switch (key) {
+    case "j":
+      soundPath = "son/son_j.mp3";
+      break;
+    case "p":
+      soundPath = "son/son_p.mp3";
+      break;
+    case "h":
+      soundPath = "son/son_h.mp3";
+      break;
+    default:
+      return; // Ne rien faire si la touche n'est pas prise en charge
+  }
+
+  // Créer un nouvel élément audio et jouer le son
+  const audio = new Audio(soundPath);
+  audio.play();
+}
+Les lignes 16 à 27 concernent la fonction , qui est appelée lorsque les touches "j", "p" ou "h" sont pressées. Cette fonction prend la touche pressée en fonction de ce paramètre. Elle utilise une instruction pour déterminer le chemin du fichier audio correspondant à la touche pressée. Si la touche n'est pas prise en charge, la fonction se termine immédiatement à l'aide de l'instruction . Sinon, elle crée un nouvel élément audio à l'aide du chemin du fichier audio et appelle la méthode pour jouer le son.playSound()switchreturnplay()En résumé, ce code détecte les touches "j", "p" et "h" lorsqu'elles sont pressées et effectuent des actions en conséquence, notamment en changeant la couleur de l'élément et en émettant un son correspondant.keypressContainer
+//--------------------------
+// Scroll Event
+
+  <nav class="nav" id="menu">
+        <ul>
+            <li>Home</li>
+            <li>Services</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+
+
+window.addEventListener("scroll",
+  () => {
+    // console.log(window.scrollY);
+    if (window.scrollY> 110) {
+      menu.style.top = 0;
+    } else {
+      menu.style.top = "-50px";
+    }
+  });
+
+Le code ajoute un écouteur d'événements scroll à l'objet window. Cela permet de détecter lorsque l'utilisateur fait défiler la page.
+Dans la fonction de rappel, nous utilisons une condition pour vérifier la position actuelle de défilement verticale de la page en utilisant window.scrollY. La propriété scrollY renvoie le nombre de pixels que la page a été défilée verticalement à partir du haut.
+Si la valeur de window.scrollY est supérieure à 110 pixels, cela signifie que l'utilisateur a fait défiler la page vers le bas. Dans ce cas, nous définissons la propriété top de l'élément avec l'ID "menu" sur 0 pixels pour le faire apparaître en haut de la page :
+
+javascript
+if (window.scrollY> 110) {
+menu.style.top = 0;
+}
+Cela signifie que lorsque l'utilisateur fait défiler la page au-delà de 110 pixels, l'élément avec l'ID "menu" sera affiché en haut de la page.
+Si la valeur de window.scrollY est inférieure ou égale à 110 pixels, cela signifie que l'utilisateur est revenu en haut de la page ou n'a pas encore fait défiler suffisamment. Dans ce cas, nous définissons la propriété top de l'élément avec l'ID "menu" sur "-50px" pour le faire disparaître en dehors de la zone visible de la page :
+javascript
+else {
+menu.style.top = "-50px";
+}
+Cela signifie que lorsque l'utilisateur est en haut de la page ou n'a pas encore fait défiler suffisamment, l'élément avec l'ID "menu" sera masqué en dehors de la zone visible de la page.
+Assurez-vous d'avoir défini l'élément avec l'ID "menu" dans votre code HTML avant d'utiliser cette partie du code.
+En résumé, l'événement scroll est utilisé pour détecter lorsque l'utilisateur fait défiler la page. Dans votre exemple, lorsque l'utilisateur fait défiler la page au-delà de 110 pixels, l'élément avec l'ID "menu" est affiché en haut de la page. Sinon, lorsque l'utilisateur est en haut de la page ou n'a pas encore fait défiler suffisamment, l'élément est masqué en dehors de la zone visible de la page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Evenement sur les inputs
+// FormEvent
+
+ <!--Formulaire -->
+    <form action="" class="box">
+        <input type="text" placeholder="Entrezvotre nom" name="nom"><br><br>
+        <select>
+            <option value="">Slectionnez votre langage favories</option>
+            <option value="Javascript">Javascript</option>
+            <option value="Php">Php</option>
+            <option value="python">python</option>
+        </select><br><br>
+        <input type="checkbox" name="" id="cgv">
+        <label for="cgv"></label>Aceptez les CGV <br><br>
+        <input type="submit" value="Valider">
+        <div></div>
+    </form>
+
+inputName.addEventListener("input",
+  (e) => {
+    pseudo = e.target.value;
+
+  });
+select.addEventListener("input",
+  (e) => {
+    language = e.target.value;
+
+  });
+form.addEventListener("submit",
+  (e) => {
+    e.preventDefault();
+
+    if (cgv.checked) {
+      document.querySelector('form>div').innerHTML = `
+       <h3>Pseudo : ${pseudo}</h3>
+        <h4>langage préféré : ${language}</h4>
+        `;
+    } else {
+      alert("Veuilez acceptez les CGV");
+    }
+  });
+
+Le code traite des événements sur les éléments <input> et <select> dans un formulaire. Voyons en détail comment ces événements sont utilisés.
+Tout d'abord, l'événement input est utilisé pour détecter lorsque l'utilisateur entre des données dans un champ de saisie. Dans votre exemple, vous avez un champ de saisie de type texte avec l'attribut name défini sur "nom". Pour écouter les événements input sur ce champ de saisie, vous pouvez utiliser le code suivant :
+javascript
+inputName.addEventListener("input", (e) => {
+  pseudo = e.target.value;
+});
+Lorsque l'utilisateur saisit quelque chose dans le champ de saisie, la fonction de rappel est appelée avec l'événement e en tant que paramètre. Nous utilisons e.target.value pour accéder à la valeur saisie par l'utilisateur dans le champ de saisie, et nous l'assignons à la variable pseudo.
+De même, vous utilisez l'événement input pour détecter les changements dans le <select> (liste déroulante) :
+
+javascript
+select.addEventListener("input", (e) => {
+language = e.target.value;
+});
+
+Lorsque l'utilisateur sélectionne une option différente dans la liste déroulante, la fonction de rappel est appelée avec l'événement e en tant que paramètre. Nous utilisons e.target.value pour accéder à la valeur de l'option sélectionnée par l'utilisateur, et nous l'assignons à la variable language.
+Ensuite, vous utilisez l'événement submit sur le formulaire pour gérer la soumission des données :
+
+javascript
+form.addEventListener("submit", (e) => {
+e.preventDefault();
+
+  if (cgv.checked) {
+document.querySelector('form>div').innerHTML = `
+<h3>Pseudo : ${pseudo}</h3>
+<h4>langage préféré : ${language}</h4>
+`;
+  } else {
+alert("Veuillez accepter les CGV");
+  }
+});
+Lorsque l'utilisateur soumet le formulaire, la fonction de rappel est appelée avec l'événement e en tant que paramètre. Nous utilisons e.preventDefault() pour empêcher le comportement par défaut du formulaire qui serait de recharger la page. Ensuite, nous vérifions si la case à cocher avec l'ID "cgv" est cochée en utilisant cgv.checked. Si la case à cocher est cochée, nous affichons les informations saisies par l'utilisateur (le pseudo et le langage préféré) dans la balise <div> du formulaire. Sinon, si la case à cocher n'est pas cochée, nous affichons une alerte demandant à l'utilisateur d'accepter les CGV.
+Assurez-vous d'avoir défini les éléments inputName, select, form, et cgv dans votre code HTML avant d'utiliser cette partie du code.
+En résumé, l'événement input est utilisé pour détecter les modifications dans les champs de saisie et les listes déroulantes. L'événement submit est utilisé pour gérer la soumission des données du formulaire. Dans votre exemple, les valeurs saisies par l'utilisateur sont stockées dans des variables (pseudo et language), et lorsque le formulaire est soumis, ces valeurs sont affichées dans la page si les CGV sont acceptées.
+
+3.	Manipulation du contenu du DOM :
+
+a. Modification du contenu texte des éléments :
+Pour modifier le contenu texte d'un élément du DOM, vous pouvez utiliser la propriété textContent ou la propriété innerText. Voici comment les utiliser :
+•	Utilisation de textContent :
+javascript
+const element = document.getElementById("myElement");
+element.textContent = "Nouveau contenu texte";
+•	Utilisation de innerText :
+javascript
+const element = document.getElementById("myElement");
+element.innerText = "Nouveau contenu texte";
+Dans les deux cas, vous sélectionnez l'élément DOM sur lequel vous souhaitez effectuer la modification en utilisant une méthode comme getElementById, querySelector, etc. Ensuite, vous assignez la nouvelle valeur au textContent ou à innerText de l'élément.
+b. Ajout et suppression d'éléments du DOM :
+Pour ajouter et supprimer des éléments du DOM, vous pouvez utiliser les méthodes suivantes :
+•	Ajout d'un nouvelélément :
+javascript
+constparentElement = document.getElementById("parentElement");
+constnewElement = document.createElement("div");
+newElement.textContent = "Contenu du nouvel élément";
+parentElement.appendChild(newElement);
+Dans cet exemple, vous créez un nouvel élément en utilisant createElement avec le nom de la balise de l'élément souhaité. Ensuite, vous pouvez configurer les propriétés ou attributs de l'élément si nécessaire. Enfin, vous ajoutez le nouvel élément en tant qu'enfant d'un autre élément existant en utilisant appendChild.
+•	Suppression d'un élément :
+javascript
+constelementToRemove = document.getElementById("elementToRemove");
+elementToRemove.remove();
+Dans cet exemple, vous sélectionnez l'élément à supprimer en utilisant une méthode comme getElementById, querySelector, etc. Ensuite, vous appelez la méthode remove sur l'élément sélectionné pour le supprimer du DOM.
+c. Modification des attributs des éléments :
+Pour modifier les attributs des éléments du DOM, vous pouvez utiliser les propriétés getAttribute, setAttribute et removeAttribute. Voici comment les utiliser :
+•	Pour obtenir la valeur d'un attribut :
+javascript
+constelement = document.getElementById("myElement");
+constattributeValue = element.getAttribute("attributName");
+Dans cet exemple, vous sélectionnez l'élément souhaité en utilisant une méthode de sélection appropriée. Ensuite, vous utilisez getAttribute en lui passant le nom de l'attribut pour obtenir sa valeur.
+•	Pour définir la valeur d'un attribut :
+javascript
+constelement = document.getElementById("myElement");
+element.setAttribute("attributName", "nouvelleValeur");
+Dans cet exemple, vous sélectionnez l'élément souhaité en utilisant une méthode de sélection appropriée. Ensuite, vous utilisez setAttribute en lui passant le nom de l'attribut et la nouvelle valeur pour définir la valeur de l'attribut.
+•	Pour supprimer un attribut :
+javascript
+const element = document.getElementById("myElement");
+element.removeAttribute("attributName");
+Dans cet exemple, vous sélectionnez l'élément souhaité en utilisant une méthode de sélection appropriée. Ensuite, vous utilisez removeAttribute en lui passant le nom de l'attribut pour le supprimer de l'élément.
+N'oubliez pas de remplacer "myElement" par l'ID ou le sélecteur approprié pour sélectionner l'élément sur lequel vous souhaitez effectuer les modifications.
+En utilisant ces techniques, vous pouvez facilement manipuler le contenu du DOM en modifiant le texte des éléments, ajoutant ou supprimant des éléments, et en modifiant les attributs des éléments selon vos besoins.
+
+4.	Manipulation du style du DOM :
+
+a.	Modification du contenu texte des éléments :
+
+Pour modifier le contenu texte d'un élément du DOM, vous pouvez utiliser la propriété textContent ou la propriété innerText. Voici comment les utiliser :
+•	Utilisation de textContent :
+
+javascript
+const element = document.getElementById("myElement");
+element.textContent = "Nouveau contenu texte";
+•	Utilisation de innerText :
+
+javascript
+const element = document.getElementById("myElement");
+element.innerText = "Nouveau contenu texte";
+
+Dans les deux cas, vous sélectionnez l'élément DOM sur lequel vous souhaitez effectuer la modification en utilisant une méthode comme getElementById, querySelector, etc. Ensuite, vous assignez la nouvelle valeur au textContent ou à innerText de l'élément.
+
+b. Ajout et suppression d'éléments du DOM :
+
+Pour ajouter et supprimer des éléments du DOM, vous pouvez utiliser les méthodes suivantes :
+•	Ajout d'un nouvelélément :
+
+javascript
+constparentElement = document.getElementById("parentElement");
+constnewElement = document.createElement("div");
+newElement.textContent = "Contenu du nouvel élément";
+parentElement.appendChild(newElement);
+
+Dans cet exemple, vous créez un nouvel élément en utilisant createElement avec le nom de la balise de l'élément souhaité. Ensuite, vous pouvez configurer les propriétés ou attributs de l'élément si nécessaire. Enfin, vous ajoutez le nouvel élément en tant qu'enfant d'un autre élément existant en utilisant appendChild.
+•	Suppression d'un élément :
+
+Javascript
+constelementToRemove = document.getElementById("elementToRemove");
+elementToRemove.remove();
+
+Dans cet exemple, vous sélectionnez l'élément à supprimer en utilisant une méthode comme getElementById, querySelector, etc. Ensuite, vous appelez la méthode remove sur l'élément sélectionné pour le supprimer du DOM.
+
+c. Modification des attributs des éléments :
+
+Pour modifier les attributs des éléments du DOM, vous pouvez utiliser les propriétés getAttribute, setAttribute et removeAttribute. Voici comment les utiliser :
+•	Pour obtenir la valeur d'un attribut :
+
+javascript
+constelement = document.getElementById("myElement");
+constattributeValue = element.getAttribute("attributName");
+
+Dans cet exemple, vous sélectionnez l'élément souhaité en utilisant une méthode de sélection appropriée. Ensuite, vous utilisez getAttribute en lui passant le nom de l'attribut pour obtenir sa valeur.
+•	Pour définir la valeur d'un attribut :
+
+javascript
+constelement = document.getElementById("myElement");
+element.setAttribute("attributName", "nouvelleValeur");
+
+Dans cet exemple, vous sélectionnez l'élément souhaité en utilisant une méthode de sélection appropriée. Ensuite, vous utilisez setAttribute en lui passant le nom de l'attribut et la nouvelle valeur pour définir la valeur de l'attribut.
+•	Pour supprimer un attribut :
+
+javascript
+const element = document.getElementById("myElement");
+element.removeAttribute("attributName");
+
+Dans cet exemple, vous sélectionnez l'élément souhaité en utilisant une méthode de sélection appropriée. Ensuite, vous utilisez removeAttribute en lui passant le nom de l'attribut pour le supprimer de l'élément.
+N'oubliez pas de remplacer "myElement" par l'ID ou le sélecteur approprié pour sélectionner l'élément sur lequel vous souhaitez effectuer les modifications.
+En utilisant ces techniques, vous pouvez facilement manipuler le contenu du DOM en modifiant le texte des éléments, ajoutant ou supprimant des éléments, et en modifiant les attributs des éléments selon vos besoins.
+
+
+5.	Gestion des événements du DOM :
+a. Ajout d'écouteurs d'événements pour répondre aux interactions des utilisateurs :
+Pour capturer les interactions des utilisateurs avec les éléments du DOM, vous pouvez ajouter des écouteurs d'événements. Voici comment vous pouvez le faire :
+javascript
+constelement = document.getElementById("myElement");
+
+element.addEventListener("event", function(event) {
+// Code à exécuter lorsque l'événement se déclenche
+});
+Dans cet exemple, vous sélectionnez l'élément sur lequel vous souhaitez ajouter l'écouteur d'événements en utilisant une méthode de sélection appropriée (par exemple, getElementById, querySelector, etc.). Ensuite, vous utilisez la méthode addEventListener pour ajouter un écouteur d'événements à cet élément. Vous spécifiez le type d'événement que vous souhaitez écouter (par exemple, "click", "mouseover", "submit", etc.) et vous fournissez une fonction de rappel (callback) qui sera exécutée lorsque l'événement se déclenche.
+Dans la fonction de rappel, vous pouvez effectuer des actions spécifiques en réponse à l'événement, telles que la modification du contenu, l'ajout ou la suppression d'éléments, la modification des styles, etc. L'objet event passé en tant que paramètre de la fonction de rappel contient des informations sur l'événement lui-même, telles que la cible de l'événement, les coordonnées de la souris, etc.
+b. Utilisation des événements courants tels que clic, survol, soumission de formulaire, etc. :
+Voici quelques exemples d'événements couramment utilisés et comment les écouter :
+•	Événement de clic :
+javascript
+element.addEventListener("click", function(event) {
+// Code à exécuter lorsqu'un clic se produit sur l'élément
+});
+•	Événement de survol (mouseover) :
+javascript
+element.addEventListener("mouseover", function(event) {
+// Code à exécuter lorsque la souris survole l'élément
+});
+•	Événement de soumission de formulaire :
+javascript
+const form = document.getElementById("myForm");
+
+form.addEventListener("submit", function(event) {
+event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+
+  // Code à exécuter lors de la soumission du formulaire
+});
+Dans cet exemple, vous sélectionnez le formulaire souhaité en utilisant une méthode de sélection appropriée (par exemple, getElementById, querySelector, etc.). Ensuite, vous ajoutez un écouteur d'événements de type "submit" à ce formulaire. La méthode preventDefault est utilisée pour empêcher le comportement par défaut du formulaire, ce qui permet de gérer la soumission du formulaire avec votre propre code.
+Ces exemples ne représentent qu'une petite partie des nombreux événements que vous pouvez écouter et gérer dans le DOM. Vous pouvez également utiliser des événements tels que "keydown" (appui sur une touche du clavier), "change" (changement de valeur d'un élément de formulaire), "scroll" (défilement de la page), etc.
+N'oubliez pas de remplacer "myElement" ou "myForm" par l'ID ou le sélecteur approprié pour sélectionner l'élément ou le formulaire sur lequel vous souhaitez ajouter l'écouteur d'événements.
+
+6.	Traverser et parcourir le DOM :
+
+
+a.	Navigation entre les éléments parents, enfants et frères :
+
+Pour naviguer entre les éléments parents, enfants et frères dans le DOM, vous pouvez utiliser les propriétés et méthodes suivantes :
+•	Parent :
+javascript
+Copier
+constparentElement = element.parentNode;
+La propriété parentNode renvoie l'élément parent direct de l'élément spécifié (element).
+•	Enfants :
+javascript
+Copier
+constchildElements = parentElement.childNodes;
+La propriété childNodes renvoie tous les nœuds enfants de l'élément parent (parentElement). Cela inclut les nœuds de texte, les commentaires et les éléments.
+•	Premier enfant :
+javascript
+Copier
+constfirstChildElement = parentElement.firstChild;
+La propriété firstChild renvoie le premier nœud enfant de l'élément parent (parentElement). Cela peut être un nœud de texte, un commentaire ou un élément.
+•	Dernier enfant :
+javascript
+Copier
+constlastChildElement = parentElement.lastChild;
+La propriété lastChild renvoie le dernier nœud enfant de l'élément parent (parentElement). Cela peut être un nœud de texte, un commentaire ou un élément.
+•	Frère précédent :
+javascript
+Copier
+constpreviousSiblingElement = element.previousSibling;
+La propriété previousSibling renvoie le frère précédent de l'élément spécifié (element). Cela peut être un nœud de texte, un commentaire ou un élément.
+•	Frère suivant :
+javascript
+Copier
+constnextSiblingElement = element.nextSibling;
+La propriété nextSibling renvoie le frère suivant de l'élément spécifié (element). Cela peut être un nœud de texte, un commentaire ou un élément.
+b. Utilisation des méthodes de parcours pour rechercher des éléments spécifiques :
+Pour rechercher des éléments spécifiques dans le DOM, vous pouvez utiliser les méthodes de parcours suivantes :
+•	Sélectionner par ID :
+javascript
+Copier
+const element = document.getElementById("myElement");
+La méthode getElementById permet de sélectionner un élément par son ID unique.
+•	Sélectionner par classe :
+javascript
+Copier
+const elements = document.getElementsByClassName("myClass");
+La méthode getElementsByClassName renvoie une collection d'éléments qui ont la classe spécifiée.
+•	Sélectionner par balise :
+javascript
+Copier
+constelements = document.getElementsByTagName("div");
+La méthode getElementsByTagName renvoie une collection d'éléments qui correspondent à la balise spécifiée.
+•	Sélectionner par sélecteurCSS :
+javascript
+Copier
+const elements = document.querySelectorAll(".myClass");
+La méthode querySelectorAll renvoie tous les éléments qui correspondent au sélecteur CSS spécifié.
+•	Parcourir les éléments parents/parents jusqu'à une condition :
+javascript
+Copier
+letcurrentElement = element;
+while (currentElement !== null) {
+  // Code à exécuter sur chaque élément parent
+currentElement = currentElement.parentNode;
+}
+Dans cet exemple, vous pouvez parcourir les éléments parents à partir d'un élément spécifié (element) en utilisant une boucle while. Vous pouvez exécuter du code sur chaque élément parent en vérifiant si l'élément courant est différent de null, puis en mettant à jour l'élément courant en le définissant comme son parent.
+Ces méthodes et techniques de parcours vous permettent de naviguer et de rechercher des éléments spécifiques dans le DOM en fonction de vos besoins.
+
+7.	Manipulation avancée du DOM :
+
+a.	Utilisation des fragments de document pour améliorer les performances :
+
+Lorsque vous effectuez des opérations de manipulation du DOM qui nécessitent l'ajout ou la modification d'un grand nombre d'éléments, l'utilisation de fragments de document peut améliorer les performances de votre application.
+Un fragment de document est un objet JavaScript qui agit comme un conteneur temporaire pour les nœuds DOM. Au lieu de manipuler directement le DOM principal, vous pouvez effectuer vos modifications dans un fragment de document, puis ajouter ce fragment au DOM principal une fois que vos modifications sont terminées. Cela réduit le nombre de modifications répercutées sur le DOM principal, ce qui améliore les performances.
+Voici comment utiliser les fragments de document :
+javascript
+// Créer un fragment de document
+const fragment = document.createDocumentFragment();
+
+// Ajouter des éléments au fragment
+const element1 = document.createElement("div");
+fragment.appendChild(element1);
+
+const element2 = document.createElement("span");
+fragment.appendChild(element2);
+
+// Ajouter le fragment au DOM principal
+const container = document.getElementById("container");
+container.appendChild(fragment);
+Dans cet exemple, vous créez un fragment de document en utilisant la méthode createDocumentFragment(). Ensuite, vous pouvez créer des éléments à ajouter au fragment à l'aide de createElement(), et les ajouter au fragment en utilisant appendChild(). Une fois que vous avez terminé d'ajouter des éléments au fragment, vous pouvez l'ajouter au DOM principal en utilisant la méthode appendChild() sur un élément existant du DOM.
+b. Gestion des formulaires et validation des entrées utilisateur :
+La gestion des formulaires et la validation des entrées utilisateur font partie intégrante de la manipulation du DOM. Voiciquelques aspects importants à prendreencompte :
+•	Récupération des valeurs des champs de formulaire :
+javascript
+const form = document.getElementById("myForm");
+const input = form.elements.myInput;
+
+const value = input.value;
+Dans cet exemple, vous pouvez récupérer la valeur d'un champ de formulaire en accédant à la propriété value de l'élément input. Vous pouvez utiliser getElementById pour sélectionner le formulaire et accéder à ses éléments à l'aide de la propriété elements et de l'attribut name des champs.
+•	Validation des entrées utilisateur :
+La validation des entrées utilisateur peut être effectuée à l'aide d'événements (par exemple, l'événement de soumission de formulaire) et de conditions de validation personnalisées. Voici un exemple simple utilisant l'événement de soumission de formulaire :
+javascript
+const form = document.getElementById("myForm");
+
+form.addEventListener("submit", function(event) {
+event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+
+  // Validation des entrées utilisateur
+const input = form.elements.myInput;
+const value = input.value;
+
+  if (value === "") {
+alert("Le champ ne peut pas être vide.");
+return;
+  }
+
+  // Soumission du formulaire
+form.submit();
+});
+Dans cet exemple, vous ajoutez un écouteur d'événements de type "submit" au formulaire. Dans la fonction de rappel, vous empêchez le comportement par défaut du formulaire en utilisant preventDefault(). Ensuite, vous pouvez valider les entrées utilisateur en accédant à la valeur du champ de formulaire et en appliquant les conditions de validation nécessaires. Si la validation échoue, vous pouvez afficher un message d'erreur (par exemple, à l'aide de alert()) et retourner pour annuler l'envoi du formulaire. Si la validation réussit, vous pouvez soumettre le formulaire à l'aide de la méthode submit().
+La gestion des formulaires et la validation des entrées utilisateur peuvent être plus complexes en fonction des exigences spécifiques de votre application. Vous pouvez utiliser des techniques telles que la validation côté client, la manipulation des classes CSS pour les erreurs de validation, l'utilisation de modèles de validation, etc., pour améliorer l'expérience utilisateur et garantir l'intégrité des données soumises.
+
+8.	Bonnespratiques et performances :
+
+a.	Optimisation de la manipulation du DOM pour des performances accrues :
+
+La manipulation du DOM peut avoir un impact significatif sur les performances de votre application, notamment lorsque vous effectuez des opérations fréquentes ou complexes. Voici quelques bonnes pratiques pour optimiser la manipulation du DOM :
+
+Limitez les accès au DOM : Les accès répétés au DOM peuvent être coûteux en termes de performances. Essayez de minimiser le nombre d'accès en stockant les références des éléments dans des variables lorsque cela est possible.
+
+Utilisez des fragments de document : Comme mentionné précédemment, l'utilisation de fragments de document peut améliorer les performances lors de l'ajout ou de la modification d'un grand nombre d'éléments. En regroupant les modifications dans un fragment avant de les ajouter au DOM, vous réduisez le nombre de répercussions sur le rendu.
+
+Utilisez textContent au lieu d'interpolation de chaînes : Lorsque vous souhaitez mettre à jour le contenu texte d'un élément, l'utilisation de la propriété textContent est généralement plus performante que l'interpolation de chaînes (innerHTML), car elle évite le processus supplémentaire d'analyse et de rendu du HTML.
+
+Évitez les reflows et les repaints coûteux : Les reflows et les repaints sont des opérations coûteuses qui peuvent ralentir les performances. Évitez de modifier les styles des éléments individuellement de manière répétée. Au lieu de cela, utilisez des classes CSS pour appliquer les modifications en bloc, ce qui réduit le nombre d'opérations de reflow et de repaint.
+
+Utilisez des techniques de batch processing : Lorsque vous effectuez plusieurs modifications sur le DOM, essayez de les regrouper en une seule opération. Par exemple, au lieu de modifier les styles d'un élément à plusieurs reprises, modifiez-les une seule fois en utilisant une classe CSS qui englobe toutes les modifications.
+
+b. Utilisation de techniques telles que la délégation d'événements pour améliorer l'efficacité :
+
+La délégation d'événements est une technique qui consiste à attacher un écouteur d'événements à un élément parent plutôt qu'à chaque élément enfant individuel. Cela permet d'améliorer l'efficacité en réduisant le nombre d'écouteurs d'événements nécessaires et en évitant les écouteurs d'événements dynamiques lors de l'ajout ou de la suppression d'éléments.
+
+Voici un exemple d'utilisation de la délégation d'événements avec la méthode addEventListener() :
+
+javascript
+constparentElement = document.getElementById("parent");
+
+parentElement.addEventListener("click", function(event) {
+  if (event.target.matches(".child")) {
+// Code à exécuter lorsque l'événement est déclenché sur un élément enfant avec la classe "child"
+console.log("Clicked on child element");
+  }
+});
+Dans cet exemple, un seul écouteur d'événements est attaché à l'élément parent (parentElement). Lorsque l'événement click est déclenché, la vérification event.target.matches(".child") est utilisée pour s'assurer que l'événement provient d'un élément enfant avec la classe "child". Vous pouvez ensuite exécuter le code spécifique à cet élément.
+
+La délégation d'événements est particulièrement utile lorsque vous avez une liste d'éléments similaires (par exemple, une liste d'éléments de menu) ou lorsque vous ajoutez ou supprimez dynamiquement des éléments du DOM. Elle permet de réduire l'empreinte mémoire de votre application en évitant de nombreux écouteurs d'événements individuels.
+
+En résumé, pour optimiser la manipulation du DOM, limitez les accès, utilisez des fragments de document, préférez textContent, évitez les reflows et les repaints coûteux, et utilisez la délégation d'événements pour réduire le nombre d'écouteurs d'événements. Ces bonnes pratiques contribueront à améliorer les performances de votre application web.
+
+
+<!DOCTYPE html>
+<htmllang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>Document</title>
+</head>
+<body>
+
+<div class="score">0</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
+
+body{
+    overflow: hidden;
+    min-height: 100vh;
+    cursor:crosshair
+}
+.bubble{
+    position:absolute;
+    border-radius: 300px;
+    background-color: rgba(255, 166, 0,0.6);
+    opacity: 0;
+    animation: animate 8s;
+    filter:hue-rotate(0deg);
+}
+
+.score{
+    font-size: 10rem;
+    text-align: center;
+    margin-top: 25px;
+    color:grey
+}
+@keyframesanimate{
+    to {
+        top:-250px;
+        opacity: 1;
+        left: var(--left);
+        filter:hue-rotate(720deg);
+}
+
+}
+
+JS
+	constcounterDisplay = document.querySelector(".score");
+let counter = 0;
+// let totalClick = 0;
+constbubbleMaker = () => {
+    constbubble = document.createElement("span");
+    // console.log(bubble);
+    bubble.classList.add("bubble");
+    document.body.appendChild(bubble);
+    // console.log(Math.random()*100  + 100);
+    constsize = Math.random() * 200 + 100 + "px";
+    bubble.style.height = size;
+    bubble.style.width = size;
+    bubble.style.top = Math.random() * 100 + 50 + "%";
+    bubble.style.left = Math.random() * 100 + "%";
+
+    constplusMinus = Math.random() >0.5 ?1 : -1;
+    bubble.style.setProperty("--left", Math.random() * 100 * plusMinus + "%");
+
+    bubble.addEventListener("click",
+        () => {
+            counter++;
+            // console.log(counter);
+            counterDisplay.textContent = counter;
+            bubble.remove();
+        });
+    setTimeout(() => {
+        bubble.remove();
+    }, 8000);
+};
+
+// document.body.addEventListener("click", () => {
+//     totalClick++;
+//     console.log(Math.round((counter / totalClick) * 100) + "%");
+//   });
+  
+  setInterval(bubbleMaker, 400);
+
+
+Le code HTML fourni représente une page web basique avec une structure HTML de base. Voici une explication de chaque partie :
+
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>Document</title>
+</head>
+<body>
+•	<!DOCTYPE html> : Déclaration du type de document HTML utilisé.
+•	<htmllang="en"> : Balise racine de la page HTML avec l'attribut lang défini sur "en" (anglais) pour spécifier la langue de la page.
+•	<head> : Section contenant les métadonnées et les informations de configuration de la page.
+•	<metacharset="UTF-8"> : Définit l'encodage des caractères utilisé pour la page (UTF-8, qui prend en charge la plupart des caractères).
+•	<meta http-equiv="X-UA-Compatible" content="IE=edge"> : Spécifie la version de compatibilité d'Internet Explorer à utiliser.
+•	<metaname="viewport" content="width=device-width, initial-scale=1.0"> : Définit les propriétés de l'affichage sur les appareils mobiles en spécifiant la largeur de l'appareil et le niveau de zoom initial.
+•	<linkrel="stylesheet" href="style.css"> : Lie le fichier CSS externe style.css à la page HTML pour appliquer les styles.
+•	<title>Document</title> : Définit le titre de la page affiché dans l'onglet du navigateur.
+
+html
+<div class="score">0</div>
+•	<div class="score">0</div> : Un élément <div> avec la classe CSS "score" qui affiche initialement le texte "0". Cetélémentestutilisé pour afficher un score.
+
+html
+
+<scriptsrc="script.js"></script>
+•	<scriptsrc="script.js"></script> : Lie le fichier JavaScript externe script.js à la page HTML pour exécuter le code JavaScript.
+html
+Copier
+</body>
+</html>
+•	</body> et </html> : Balises de fermeture pour la section du corps et la balise racine de la page HTML.
+Le code CSS fourni dans <style> définit les styles pour différents sélecteurs de classe :
+•	.bubble : Représente des éléments de type <span> qui sont animés pour créer des bulles sur la page.
+•	.score : Applique des styles à l'élément avec la classe "score" qui affiche le score.
+Le code JavaScript fourni dans <script> effectue les actions suivantes :
+•	Déclare une variable counterDisplay qui fait référence à l'élément avec la classe "score".
+•	Déclare une variable counter pour stocker le score initial à 0.
+•	Définit une fonction bubbleMaker qui crée des éléments <span> (bulles) et les ajoute au DOM avec des styles aléatoires. Cesbullessontanimées et peuventêtrecliquées.
+•	À chaque clic sur une bulle, le score est incrémenté, le texte du score est mis à jour et la bulle est supprimée du DOM.
+•	Les bulles sont également supprimées automatiquement après 8 secondes.
+•	La fonction bubbleMaker est appelée toutes les 400 millisecondes (0,4 seconde) pour créer de nouvelles bulles périodiquement.
+Le code JavaScript commenté est une partie qui semble être désactivée (// est utilisé pour commenter une ligne ou un bloc de code) et concerne le calcul d'un pourcentage basé sur le score et le nombre total de clics.
+En résumé, ce code HTML, CSS et JavaScript crée une page web qui affiche un score et génère périodiquement des bulles animées qui peuvent être cliquées pour augmenter le score.
+
+  
+
+
+
+

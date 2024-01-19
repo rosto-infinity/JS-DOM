@@ -98,13 +98,95 @@ response.style.transform = "rotate(3deg)";
 
 
 
-document.addEventListener("keydown", (e) => {
-  key.textContent = e.key;
-  if (e.key === "j") {
+// document.addEventListener("keydown", (e) => {
+//   key.textContent = e.key;
+//   if (e.key === "j") {
+//     keypressContainer.style.background = "pink";
+//   } else if (e.key === "h") {
+//     keypressContainer.style.background = "teal";
+//   } else {
+//     keypressContainer.style.background = "red";
+//   }
+// });
+
+
+// // Fonction de manipulation des événements de pression des touches
+// document.addEventListener("keydown", (event) => {
+//   const key = event.key.toLowerCase();
+
+//   // Vérification des touches pressées
+//   if (key === "j" || key === "p" || key === "h") {
+//     // Jouer le son correspondant
+//     playSound(key);
+//   }
+// });
+
+// // Fonction de lecture du son
+// function playSound(key) {
+//   let soundPath = "";
+
+//   // Déterminer le chemin du fichier audio en fonction de la touche pressée
+//   switch (key) {
+//     case "j":
+//       soundPath = "chemin/du/son_j.mp3";
+//       break;
+//     case "p":
+//       soundPath = "chemin/du/son_p.mp3";
+//       break;
+//     case "h":
+//       soundPath = "chemin/du/son_h.mp3";
+//       break;
+//     default:
+//       return; // Ne rien faire si la touche n'est pas prise en charge
+//   }
+
+//   // Créer un nouvel élément audio et jouer le son
+//   const audio = new Audio(soundPath);
+//   audio.play();
+// }
+
+
+
+// Fonction de manipulation des événements de pression des touches
+document.addEventListener("keydown", (event) => {
+  const key = event.key.toLowerCase();
+
+  // Vérification des touches pressées
+  if (key === "j" || key === "p" || key === "h") {
+    // Jouer le son correspondant
+    playSound(key);
+  }
+
+  // Changement de couleur en fonction de la touche pressée
+  if (key === "j") {
     keypressContainer.style.background = "pink";
-  } else if (e.key === "h") {
+  } else if (key === "h") {
     keypressContainer.style.background = "teal";
   } else {
     keypressContainer.style.background = "red";
   }
 });
+
+// Fonction de lecture du son
+function playSound(key) {
+  let soundPath = "";
+
+  // Déterminer le chemin du fichier audio en fonction de la touche pressée
+  switch (key) {
+    case "j":
+      soundPath = "son/son_j.mp3";
+      break;
+    case "p":
+      soundPath = "son/son_p.mp3";
+      break;
+    case "h":
+      soundPath = "son/son_h.mp3";
+      break;
+    default:
+      return; // Ne rien faire si la touche n'est pas prise en charge
+  }
+
+  // Créer un nouvel élément audio et jouer le son
+  const audio = new Audio(soundPath);
+  audio.play();
+}

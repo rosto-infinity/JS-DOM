@@ -1,0 +1,99 @@
+
+// Fonction de manipulation des événements de pression des touches
+document.addEventListener("keydown", (event) => {
+  const key = event.key.toLowerCase();
+
+  // Vérification des touches pressées
+  if (key === "j" || key === "p" || key === "h") {
+    // Jouer le son correspondant
+    playSound(key);
+  }
+
+  // Changement de couleur en fonction de la touche pressée
+  if (key === "j") {
+    keypressContainer.style.background = "pink";
+  } else if (key === "h") {
+    keypressContainer.style.background = "teal";
+  } else {
+    keypressContainer.style.background = "red";
+  }
+});
+
+// Fonction de lecture du son
+function playSound(key) {
+  let soundPath = "";
+
+  // Déterminer le chemin du fichier audio en fonction de la touche pressée
+  switch (key) {
+    case "j":
+      soundPath = "son/son_j.mp3";
+      break;
+    case "p":
+      soundPath = "son/son_p.mp3";
+      break;
+    case "h":
+      soundPath = "son/son_h.mp3";
+      break;
+    default:
+      return; // Ne rien faire si la touche n'est pas prise en charge
+  }
+
+  // Créer un nouvel élément audio et jouer le son
+  const audio = new Audio(soundPath);
+  audio.play();
+}
+
+
+
+
+
+Le code fourni est un exemple de code JavaScript qui détecte les touches "j", "p" et "h" lorsqu'elles sont pressées et effectuent des actions en conséquence. Voici une explication détaillée du code, ligne par ligne :
+javascript
+// Fonction de manipulation des événements de pression des touches
+document.addEventListener("keydown", (event) => {
+La première ligne de code ajoute un écouteur d'événement à l'objet pour détecter les pressions de touches. Lorsqu'une touche est pressée, la fonction fléchée est appelée avec l'objet événement en tant que paramètre.document
+javascript
+const key = event.key.toLowerCase();
+La deuxième ligne de code extrait la touche pressée de l'objet événement et la convertit en minuscules à l'aide de la méthode . Cela permet de comparer la touche pressée avec les touches "j", "p" et "h" agissant sur la casse.toLowerCase()
+javascript
+// Vérification des touches pressées
+if (key === "j" || key === "p" || key === "h") {
+  // Jouer le son correspondant
+  playSound(key);
+}
+Les lignes 4 à 6 vérifient si la touche pressée est "j", "p" ou "h". Si c'est le cas, la fonction est appelée avec la touche pressée en tant que paramètre.playSound()
+javascript
+// Changement de couleur en fonction de la touche pressée
+if (key === "j") {
+  keypressContainer.style.background = "pink";
+} else if (key === "h") {
+  keypressContainer.style.background = "teal";
+} else {
+  keypressContainer.style.background = "red";
+}
+Les lignes 8 à 14 changent la couleur de l'élément en fonction de la touche pressée. Si la touche est "j", la couleur est définie sur "pink". Si la touche est "h", la couleur est définie sur "teal". Sinon, la couleur est définie sur "red".keypressContainer
+javascript
+// Fonction de lecture du son
+function playSound(key) {
+  let soundPath = "";
+
+  // Déterminer le chemin du fichier audio en fonction de la touche pressée
+  switch (key) {
+    case "j":
+      soundPath = "son/son_j.mp3";
+      break;
+    case "p":
+      soundPath = "son/son_p.mp3";
+      break;
+    case "h":
+      soundPath = "son/son_h.mp3";
+      break;
+    default:
+      return; // Ne rien faire si la touche n'est pas prise en charge
+  }
+
+  // Créer un nouvel élément audio et jouer le son
+  const audio = new Audio(soundPath);
+  audio.play();
+}
+Les lignes 16 à 27 concernent la fonction , qui est appelée lorsque les touches "j", "p" ou "h" sont pressées. Cette fonction prend la touche pressée en fonction de ce paramètre. Elle utilise une instruction pour déterminer le chemin du fichier audio correspondant à la touche pressée. Si la touche n'est pas prise en charge, la fonction se termine immédiatement à l'aide de l'instruction . Sinon, elle crée un nouvel élément audio à l'aide du chemin du fichier audio et appelle la méthode pour jouer le son.playSound()switchreturnplay()En résumé, ce code détecte les touches "j", "p" et "h" lorsqu'elles sont pressées et effectuent des actions en conséquence, notamment en changeant la couleur de l'élément et en émettant un son correspondant.keypressContainer
