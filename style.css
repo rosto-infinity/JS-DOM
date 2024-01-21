@@ -12,6 +12,7 @@ body{
 .box {
     background-color: black;
     padding: 40px;
+    color:white;
     text-align: center;
     margin: 15px;
     z-index: 2;
