@@ -90,7 +90,7 @@ questionContainer.addEventListener(
   //-------------mouseover -------
 response.addEventListener('mouseover',
 () => {
-  // console.log(response.style.transform = "rotate(1deg)");
+  console.log(response.style.transform = "rotate(1deg)");
 response.style.transform = "rotate(3deg)";
 });
 
