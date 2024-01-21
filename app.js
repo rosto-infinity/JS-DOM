@@ -162,6 +162,8 @@ document.addEventListener("keydown", (event) => {
     keypressContainer.style.background = "pink";
   } else if (key === "h") {
     keypressContainer.style.background = "teal";
+  }else if (key === "p") {
+    keypressContainer.style.background = "orange";
   } else {
     keypressContainer.style.background = "red";
   }
